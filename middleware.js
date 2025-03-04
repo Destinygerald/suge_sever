@@ -23,7 +23,7 @@ async function authAdmin (req, res, next) {
             })
         }
 
-        const verify = jwtVerify(admin_auth_token)
+        const verify = await jwtVerify(admin_auth_token)
 
         if (!verify) {
             return res.status(401).json({

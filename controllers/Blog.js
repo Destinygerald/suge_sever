@@ -102,9 +102,9 @@ async function profile(req, res) {
                 message: 'Invalid token Credentials'
             })
         }
+
         const verify = await jwtVerify(admin_auth_token)
 
-        console.log(verify)
 
         if (!verify) {
             return res.status(401).json({

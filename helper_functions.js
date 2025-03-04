@@ -23,7 +23,6 @@ async function jwtSign (info) {
 
 async function jwtVerify (token) {
 	const result = await jwt.verify(token, process.env.SECRET)
-	console.log(result)
 	return result
 }
 
