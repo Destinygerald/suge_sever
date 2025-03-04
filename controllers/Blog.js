@@ -103,13 +103,17 @@ async function profile(req, res) {
             })
         }
 
+        console.log('1')
+
         const verify = await jwtVerify(admin_auth_token)
+
+
 
 
         if (!verify) {
             return res.status(401).json({
                 status: 'Failed',
-                message: 'Invalid token Credentials'
+                message: 'Couldnt verify Credentials'
             })
         }
 
@@ -118,7 +122,7 @@ async function profile(req, res) {
         if (!checkEmail) {
             return res.status(401).json({
                 status: 'Failed',
-                message: 'Invalid token Credentials'
+                message: 'Invalid token Credentials*'
             })
         }
 
