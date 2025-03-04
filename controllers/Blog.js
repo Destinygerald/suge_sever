@@ -93,7 +93,11 @@ async function signUp(req, res) {
 
 async function profile(req, res) {
     try {
+
+        console.log(0)
         const { admin_auth_token } = req.cookies
+
+        console.log(1)
 
         if (!admin_auth_token) {
             return res.status(401).json({
@@ -102,6 +106,7 @@ async function profile(req, res) {
             })
         }
 
+        console.log(2)
         const verify = await jwtVerify(admin_auth_token)
 
 
