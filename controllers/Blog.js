@@ -8,8 +8,6 @@ async function auth(req, res) {
 
         const { email, password } = req.body
 
-        console.log(email, password)
-
         if (!email || !password) {
             return res.status(401).json({
                 status: 'Invalid credentials',
@@ -27,7 +25,7 @@ async function auth(req, res) {
             })
         }
 
-        const authToken = jwtSign({...adminCheck})
+        const authToken = await jwtSign({...adminCheck})
 
 
         if (!authToken) {
@@ -37,13 +35,10 @@ async function auth(req, res) {
             })
         }
 
-        let expires = (new Date(Date.now()+ 86400*1000)).toUTCString();
-
+       
         return res
                 .status(200)
-                .cookie('admin_auth_token', authToken, {
-                    maxAge: 24 * 60 * 60 * 1000
-                })
+                .cookie('admin_auth_token', authToken, { expires: new Date(Date.now() + (24 * 3600000)) })
                 .json({
                     status: 'Ok',
                     message: 'Login Successfully'
@@ -107,8 +102,9 @@ async function profile(req, res) {
                 message: 'Invalid token Credentials'
             })
         }
+        const verify = await jwtVerify(admin_auth_token)
 
-        const verify = jwtVerify(admin_auth_token)
+        console.log(verify)
 
         if (!verify) {
             return res.status(401).json({

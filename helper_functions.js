@@ -16,13 +16,14 @@ async function comparePassword(password, hash) {
 	return match
 }
 
-function jwtSign (info) {
-	const sign = jwt.sign(info, process.env.SECRET)
+async function jwtSign (info) {
+	const sign = await jwt.sign(info, process.env.SECRET)
 	return sign
 }
 
-function jwtVerify (token) {
-	const result = jwt.verify(token, process.env.SECRET)
+async function jwtVerify (token) {
+	const result = await jwt.verify(token, process.env.SECRET)
+	console.log(result)
 	return result
 }
 
