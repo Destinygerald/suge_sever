@@ -93,9 +93,6 @@ async function signUp(req, res) {
 
 async function profile(req, res) {
     try {
-
-        console.log(cookies)
-
         const { admin_auth_token } = req.cookies
 
         if (!admin_auth_token) {
@@ -104,8 +101,6 @@ async function profile(req, res) {
                 message: 'Invalid token Credentials'
             })
         }
-
-        console.log('1')
 
         const verify = await jwtVerify(admin_auth_token)
 
