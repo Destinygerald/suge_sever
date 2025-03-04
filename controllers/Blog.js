@@ -98,6 +98,7 @@ async function profile(req, res) {
         const { admin_auth_token } = req.cookies
 
         console.log(1)
+        console.log(admin_auth_token)
 
         if (!admin_auth_token) {
             return res.status(401).json({
