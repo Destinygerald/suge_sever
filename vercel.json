@@ -46,5 +46,20 @@
           "Access-Control-Allow-Credentials": "true"
         }
       }
+    ],
+
+    "rewrites": [
+      { 
+        "source": "/blog/(.*)", 
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/test", 
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/admin/(.*)", 
+        "destination": "./index.js" 
+      }
     ]
 }
