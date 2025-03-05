@@ -42,7 +42,7 @@ async function createBlog(data) {
 
 async function getBlogs() {
 
-    const allBlogs = await Blog.find({})
+    const allBlogs = await Blog.find({}).sort({dateAdded: 'desc'})
 
     return allBlogs;
 }
