@@ -51,35 +51,35 @@
     "rewrites": [
       { 
         "source": "/blog", 
-        "destination": "./index.js" 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
-        "source": "/blog/:id", 
-        "destination": "./index.js" 
+        "source": "/blog/:id*", 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
         "source": "/test", 
-        "destination": "./index.js" 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
         "source": "/admin", 
-        "destination": "./index.js" 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
-        "source": "/admin/:id", 
-        "destination": "./index.js" 
+        "source": "/admin/:id*", 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
         "source": "/admin/login", 
-        "destination": "./index.js" 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
         "source": "/admin/signup",  
-        "destination": "./index.js" 
+        "destination": "https://suge-sever.vercel.app" 
       },
       { 
         "source": "/admin/profile", 
-        "destination": "./index.js" 
+        "destination": "https://suge-sever.vercel.app" 
       }
     ]
 }
