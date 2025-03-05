@@ -179,6 +179,7 @@ async function addBlog(req, res) {
 
 async function blogs (req, res) {
     try {
+        console.log(req.cookies)
         const blogList = await getBlogs()
 
         return res.status(200).json({
