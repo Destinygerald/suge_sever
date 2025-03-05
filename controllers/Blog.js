@@ -179,13 +179,13 @@ async function addBlog(req, res) {
 
 async function blogs (req, res) {
     try {
-        // console.log(req.cookies)
+        const check = req.cookies
         const blogList = await getBlogs()
 
         return res.status(200).json({
             status: 'OK',
             result: blogList,
-            check: req.cookies
+            check: check
         })
     } catch (err) {
         return res.status(500).json({
