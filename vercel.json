@@ -28,9 +28,19 @@
       },
 
       {
-        "src": "/blog",
+        "src": "/blog/(.*)",
         "dest": "./index.js",
         "methods": ["GET"],
+        "headers": {
+          "Access-Control-Allow-Origin": "http://localhost:5173",
+          "Access-Control-Allow-Credentials": "true"
+        }
+      },
+
+      {
+        "src": "/(.*)",
+        "dest": "./index.js",
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
         "headers": {
           "Access-Control-Allow-Origin": "http://localhost:5173",
           "Access-Control-Allow-Credentials": "true"
