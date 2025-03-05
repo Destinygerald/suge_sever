@@ -22,8 +22,10 @@ app.use('/admin', admin)
 app.use('/', index)
 
 app.get('/test', (req, res) => {
-    console.log('Testing')
-    return 
+    return res.status(200).json({
+        status: 'OK',
+        message: 'Test successful'
+    })
 })
 
 
