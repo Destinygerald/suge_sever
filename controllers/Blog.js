@@ -94,21 +94,16 @@ async function signUp(req, res) {
 async function profile(req, res) {
     try {
 
-        console.log(0)
-        const { admin_auth_token } = req.cookies
+        const authToken = req.headers.authorization.split(' ')
 
-        console.log(1)
-        console.log(admin_auth_token)
-
-        if (!admin_auth_token) {
+        if (!authToken[1]) {
             return res.status(401).json({
                 status: 'Failed',
                 message: 'Invalid token Credentials'
             })
         }
 
-        console.log(2)
-        const verify = await jwtVerify(admin_auth_token)
+        const verify = await jwtVerify(authToken[1])
 
 
 

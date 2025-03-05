@@ -12,18 +12,17 @@ function asyncWrapper(fn) {
 
 async function authAdmin (req, res, next) {
 	try {
+		const authToken = req.headers.authorization.split(' ')
 
-		const { admin_auth_token } = req.cookies
 
-
-        if (!admin_auth_token) {
+        if (!authToken) {
             return res.status(401).json({
                 status: 'Failed',
                 message: 'Invalid token Credentials'
             })
         }
 
-        const verify = await jwtVerify(admin_auth_token)
+        const verify = await jwtVerify(authToken[1])
 
         if (!verify) {
             return res.status(401).json({
