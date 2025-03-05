@@ -46,39 +46,5 @@
           "Access-Control-Allow-Credentials": "true"
         }
       }
-    ],
-    "rewrites": [
-      { 
-        "source": "/blog", 
-        "destination": "/" 
-      },
-      { 
-        "source": "/blog/:id*", 
-        "destination": "/" 
-      },
-      { 
-        "source": "/test", 
-        "destination": "/" 
-      },
-      { 
-        "source": "/admin", 
-        "destination": "/" 
-      },
-      { 
-        "source": "/admin/:id*", 
-        "destination": "/" 
-      },
-      { 
-        "source": "/admin/login", 
-        "destination": "/" 
-      },
-      { 
-        "source": "/admin/signup",  
-        "destination": "/" 
-      },
-      { 
-        "source": "/admin/profile", 
-        "destination": "/" 
-      }
     ]
 }
