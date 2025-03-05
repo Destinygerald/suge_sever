@@ -19,7 +19,7 @@ app.use(
 );
 
 app.use('/admin', admin)
-app.use('/', index)
+app.use('/blog', index)
 
 app.get('/test', (req, res) => {
     return res.status(200).json({
