@@ -50,7 +50,11 @@
 
     "rewrites": [
       { 
-        "source": "/blog/(.*)", 
+        "source": "/blog", 
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/blog/:id", 
         "destination": "./index.js" 
       },
       { 
@@ -58,7 +62,23 @@
         "destination": "./index.js" 
       },
       { 
-        "source": "/admin/(.*)", 
+        "source": "/admin", 
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/admin/:id", 
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/admin/login", 
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/admin/signup",  
+        "destination": "./index.js" 
+      },
+      { 
+        "source": "/admin/profile", 
         "destination": "./index.js" 
       }
     ]
