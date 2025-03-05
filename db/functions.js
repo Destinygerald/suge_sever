@@ -59,7 +59,12 @@ async function getBlog(id) {
 async function updateBlog(id, data) {
     const blog = await Blog.findOne({ _id: id })
     blog.title = data.title
-    blog.content = data.content
+    blog.content = []
+    
+    data.content.forEach(item => blog.content.push(item))
+
+    // blog.content.push(data.content)
+   
     blog.readTime = data.readTime
 
     await blog.save()

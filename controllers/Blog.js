@@ -226,7 +226,7 @@ async function blog (req, res) {
 async function editBlog(req, res) {
     try {
         const { id } = req.params
-        const { title, content, readTime, imag } = req.body
+        const { title, content, readTime } = req.body
 
         if (!id) {
             return res.status(404).json({
@@ -247,8 +247,7 @@ async function editBlog(req, res) {
         const data = {
             title,
             content,
-            readTime,
-            img
+            readTime
         }
         
         await updateBlog(id, data)
