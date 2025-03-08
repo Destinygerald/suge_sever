@@ -141,7 +141,7 @@ async function profile(req, res) {
 
 async function addBlog(req, res) {
     try {
-        const { title, content, readTime } = req.body;
+        const { title, content, readTime, template } = req.body;
 
 
         if (!title || !readTime || !content[0]) {
@@ -152,7 +152,7 @@ async function addBlog(req, res) {
         }
 
         const data = {
-            title, content, readTime, dateAdded: Date.now()
+            title, content, readTime, dateAdded: Date.now(), template
         }
 
     
@@ -175,13 +175,11 @@ async function addBlog(req, res) {
 
 async function blogs (req, res) {
     try {
-        const check = req.cookies
         const blogList = await getBlogs()
 
         return res.status(200).json({
             status: 'OK',
-            result: blogList,
-            check: check
+            result: blogList
         })
     } catch (err) {
         return res.status(500).json({
