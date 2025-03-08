@@ -12,7 +12,7 @@
         "dest": "/",
         "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
         "headers": {
-          "Access-Control-Allow-Origin": "www.sugeuk.co",
+          "Access-Control-Allow-Origin": "www.sugeuk.co.uk",
           "Access-Control-Allow-Credentials": "true"
         }
       },
@@ -22,7 +22,7 @@
         "dest": "/",
         "methods": ["GET"],
         "headers": {
-          "Access-Control-Allow-Origin": "www.sugeuk.co",
+          "Access-Control-Allow-Origin": "www.sugeuk.co.uk",
           "Access-Control-Allow-Credentials": "true"
         }
       },
@@ -32,7 +32,7 @@
         "dest": "/",
         "methods": ["GET"],
         "headers": {
-          "Access-Control-Allow-Origin": "www.sugeuk.co",
+          "Access-Control-Allow-Origin": "www.sugeuk.co.uk",
           "Access-Control-Allow-Credentials": "true"
         }
       },
@@ -42,7 +42,7 @@
         "dest": "/",
         "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
         "headers": {
-          "Access-Control-Allow-Origin": "www.sugeuk.co",
+          "Access-Control-Allow-Origin": "www.sugeuk.co.uk",
           "Access-Control-Allow-Credentials": "true"
         }
       }
