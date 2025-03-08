@@ -10,7 +10,7 @@ const app = express();
 
 app.use(function(req, res, next) {
     // res.header("Access-Control-Allow-Origin", "*");
-    const allowedOrigins = ['http://localhost:5173', 'https://suge-3a6v.onrender.com', 'http://suge.co.uk', 'http://sugeuk.com', 'https://suge.co.uk', 'https://sugeuk.com'];
+    const allowedOrigins = ['http://localhost:5173', 'https://suge.co.uk', 'https://suge-3a6v.onrender.com', 'http://suge.co.uk', 'http://sugeuk.com', 'https://sugeuk.com'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
          res.setHeader('Access-Control-Allow-Origin', origin);
