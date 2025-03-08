@@ -38,7 +38,6 @@ async function auth(req, res) {
        
         return res
                 .status(200)
-                .cookie('admin_auth_token', authToken, { expires: new Date(Date.now() + (24 * 3600000)) })
                 .json({
                     status: 'Ok',
                     message: 'Login Successfully',
