@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(
     cors({
-        origin: ['http://localhost:5173', 'https://suge-3a6v.onrender.com', 'www.suge.co.uk', 'www.sugeuk.com', 'http://suge.co.uk'],
+        origin: ['http://localhost:5173', 'https://suge-3a6v.onrender.com', 'http://suge.co.uk', 'http://sugeuk.com', 'https://suge.co.uk', 'https://sugeuk.com'],
         credentials: true,
         optionsSuccessStatus: 200 
     })
