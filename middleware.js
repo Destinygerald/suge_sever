@@ -23,7 +23,13 @@ async function authAdmin (req, res, next) {
             })
         }
 
-		const token = authToken[1].slice(0, authToken[1].length - 1)
+		let token ;
+		
+		if (authToken[1].at(authToken[1].length) == ';') {
+			token = authToken[1].slice(0, authToken[1].length - 1)
+		} else {
+			token = authToken[1]
+		}
 
         const verify = jwtVerify(token)
 
