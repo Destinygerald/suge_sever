@@ -1,5 +1,6 @@
 const { jwtVerify } = require('./helper_functions.js')
 const { findAdminEmail } = require('./db/functions.js')
+const { auth } = require('./controllers/Blog.js')
 require('dotenv').config()
 function asyncWrapper(fn) {
 	return (req, res, next) => {
@@ -22,7 +23,9 @@ async function authAdmin (req, res, next) {
             })
         }
 
-        const verify = jwtVerify(authToken[1])
+		const token = authToken.slice(0, authToken[1].length - 1)
+
+        const verify = jwtVerify(token)
 
         if (!verify) {
             return res.status(401).json({
