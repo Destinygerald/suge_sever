@@ -1,5 +1,6 @@
 const { createBlog, getBlogs, getBlog, updateBlog, deleteBlog, adminLogin, findAdminEmail, addAdmin } = require('../db/functions')
 const { jwtSign, jwtVerify, hashPassword } = require('../helper_functions.js')
+require('dotenv').config()
 
 let AdminAdded = false;
 
