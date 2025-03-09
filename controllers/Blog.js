@@ -1,5 +1,6 @@
 const { createBlog, getBlogs, getBlog, updateBlog, deleteBlog, adminLogin, findAdminEmail, addAdmin } = require('../db/functions')
 const { jwtSign, jwtVerify, hashPassword } = require('../helper_functions.js')
+const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 let AdminAdded = false;
@@ -103,14 +104,18 @@ async function profile(req, res) {
 
         console.log(authToken)
 
-        if (!authToken[0]) {
+        if (!authToken[1]) {
             return res.status(401).json({
                 status: 'Failed',
                 message: 'Invalid token Credentials'
             })
         }
 
-        const verify = jwtVerify(authToken[1])
+
+
+        // const verify = jwtVerify(authToken[1])
+        console.log(process.env.SECRET)
+        const verify = jwt.verify(authToken[1], process.env.SECRET)
 
         console.log(verify)
 
