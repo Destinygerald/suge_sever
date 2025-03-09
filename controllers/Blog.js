@@ -142,7 +142,6 @@ async function addBlog(req, res) {
     try {
         const { title, content, readTime, template } = req.body;
 
-
         if (!title || !readTime || !content[0]) {
             return res.status(400).json({
                 status: 'Failed',
