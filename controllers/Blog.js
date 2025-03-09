@@ -104,9 +104,8 @@ async function profile(req, res) {
             })
         }
 
-        const verify = await jwtVerify(authToken[1])
+        const verify = jwtVerify(authToken[1])
 
-        console.log(verify)
 
         if (!verify) {
             return res.status(401).json({
