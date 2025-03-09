@@ -94,11 +94,8 @@ async function signUp(req, res) {
 async function profile(req, res) {
     try {
 
-        console.log(req)
-
         const authToken = req.headers.authorization.split(' ')
 
-        console.log(authToken)
 
         if (!authToken[1]) {
             return res.status(401).json({
@@ -109,8 +106,7 @@ async function profile(req, res) {
 
         const verify = await jwtVerify(authToken[1])
 
-
-
+        console.log(verify)
 
         if (!verify) {
             return res.status(401).json({
