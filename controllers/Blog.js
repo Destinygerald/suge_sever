@@ -111,7 +111,7 @@ async function profile(req, res) {
             })
         }
 
-        const token = authToken.slice(0, authToken[1].length - 1)
+        const token = authToken[1].slice(0, authToken[1].length - 1)
 
         const verify = jwtVerify(token)
 
