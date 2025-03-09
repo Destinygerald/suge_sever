@@ -26,7 +26,7 @@ async function auth(req, res) {
             })
         }
 
-        const authToken = await jwtSign({...adminCheck})
+        const authToken = jwtSign({...adminCheck})
 
 
         if (!authToken) {
@@ -95,10 +95,15 @@ async function signUp(req, res) {
 async function profile(req, res) {
     try {
 
+        console.log(req.headers)
+
         const authToken = req.headers.authorization.split(' ')
+        // let token = authToken[0]
 
 
-        if (!authToken[1]) {
+        console.log(authToken)
+
+        if (!authToken[0]) {
             return res.status(401).json({
                 status: 'Failed',
                 message: 'Invalid token Credentials'
@@ -106,6 +111,8 @@ async function profile(req, res) {
         }
 
         const verify = jwtVerify(authToken[1])
+
+        console.log(verify)
 
 
         if (!verify) {
