@@ -23,7 +23,6 @@ function jwtSign (info) {
 
 function jwtVerify (token) {
 	const result = jwt.verify(token, process.env.SECRET)
-	console.log(result)
 	return result
 }
 

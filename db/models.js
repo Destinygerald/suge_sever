@@ -20,6 +20,7 @@ const Content = model('content', contentSchema)
 
 // BLOG SCHEMA
 const BlogSchema = new Schema({
+    meta_data_title: String,
     template: Number,
     title: String,
     dateAdded: Date,
@@ -53,8 +54,27 @@ const AdminSchema = new Schema({
 
 const Admin = model('admin', AdminSchema)
 
+const QuoteSchema = new Schema({
+    businessType: String,
+    wasteType: String,
+    frequency: String,
+    location: String,
+    name: String,
+    email: String,
+    phone: String,
+    status: {
+        type: String,
+        default: 'Pending'
+    },
+    dateAdded: Date
+})
+
+const Quote = model('quote', QuoteSchema)
+
+
 module.exports = {
     Blog,
     Admin,
-    Content
+    Content,
+    Quote
 }

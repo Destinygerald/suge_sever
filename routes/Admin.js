@@ -1,5 +1,6 @@
 const express = require('express')
 const { addBlog, editBlog, removeBlog, auth, signUp, profile } = require('../controllers/Blog.js')
+const { allQuotes, quote, editQuote, removeQuote } = require('../controllers/Quote.js')
 const { authAdmin } = require('../middleware.js')
 
 const Route = express.Router()
@@ -21,5 +22,13 @@ Route.post('/', addBlog)
 Route.use('/:id', authAdmin)
 Route.put('/:id', editBlog)
 Route.delete('/:id', removeBlog)
+
+Route.use('/quote', authAdmin)
+Route.get('/quote', allQuotes)
+
+Route.use('/quote/:id', authAdmin)
+Route.get('/quote/:id', quote)
+Route.put('/quote/:id', editQuote)
+Route.delete('/quote/:id', removeQuote)
 
 module.exports = Route

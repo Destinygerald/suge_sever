@@ -45,9 +45,6 @@ async function auth(req, res) {
                     message: 'Login Successfully',
                     auth: authToken
                 })
-
-        
-
     } catch (err) {
         return res.status(500).json({
             status: 'Failed',
@@ -96,13 +93,9 @@ async function signUp(req, res) {
 async function profile(req, res) {
     try {
 
-        console.log(req.headers)
-
         const authToken = req.headers.authorization.split(' ')
         // let token = authToken[0]
 
-
-        console.log(authToken)
 
         if (!authToken[1]) {
             return res.status(401).json({
@@ -120,9 +113,6 @@ async function profile(req, res) {
 		}
 
         const verify = jwtVerify(token)
-
-        console.log(verify)
-
 
         if (!verify) {
             return res.status(401).json({
@@ -156,7 +146,7 @@ async function profile(req, res) {
 
 async function addBlog(req, res) {
     try {
-        const { title, content, readTime, template } = req.body;
+        const { title, content, readTime, template, meta_data_title } = req.body;
 
         if (!title || !readTime || !content[0]) {
             return res.status(400).json({
@@ -166,14 +156,13 @@ async function addBlog(req, res) {
         }
 
         const data = {
-            title, content, readTime, dateAdded: Date.now(), template
+            title, content, readTime, dateAdded: Date.now(), template, meta_data_title
         }
 
     
 
         await createBlog(data)
 
-    
 
         return res.status(201).json({
             status: 'Created',
@@ -238,7 +227,7 @@ async function blog (req, res) {
 async function editBlog(req, res) {
     try {
         const { id } = req.params
-        const { title, content, readTime } = req.body
+        const { title, content, readTime, meta_data_title } = req.body
 
         if (!id) {
             return res.status(404).json({
@@ -259,7 +248,8 @@ async function editBlog(req, res) {
         const data = {
             title,
             content,
-            readTime
+            readTime,
+            meta_data_title
         }
         
         await updateBlog(id, data)

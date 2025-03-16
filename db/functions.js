@@ -1,5 +1,5 @@
 const Mongoose = require('mongoose')
-const { Blog, Admin, Content } = require('./models.js')
+const { Blog, Admin, Content, Quote } = require('./models.js')
 const { hashPassword, comparePassword } = require('../helper_functions.js')
 require('dotenv').config()
 
@@ -93,6 +93,7 @@ async function getBlogs() {
     const filteredBlogs = await allBlogs.map((item, i) => {
         return ({
             _id: item?._id,
+            meta_data_title: item?.meta_data_title,
             title: item?.title,
             dateAdded: item?.dateAdded,
             readTime: item?.readTime,
@@ -139,6 +140,7 @@ async function updateBlog(id, data) {
 
    
     blog.readTime = data.readTime
+    blog.meta_data_title = data.meta_data_title
 
     await blog.save()
 }
@@ -151,6 +153,55 @@ async function deleteBlog(id) {
     await blog.deleteOne()
 
     return 0;
+}
+
+async function getAllQuotes () {
+    const allQuotes = await Quote.find({})
+                                .sort({dateAdded: 'desc'})
+
+    return allQuotes;
+}
+
+
+async function getQuote (id) {
+    const quote = await Quote.findOne({_id: id})
+
+    if (!quote) return 'Invalid Id';
+
+    return quote
+}
+
+
+async function addQuote (data) {
+    const quote = await Quote.create({...data, dateAdded: Date.now()})
+
+    if (!quote) return;
+
+    return true
+}
+
+
+async function editQuoteStat (id, stat) {
+    const quote = await Quote.findOne({ _id: id })
+
+    if (!quote) return 'Invalid Id';
+
+    quote.status = stat
+
+    await quote.save()
+
+    return quote;
+}
+
+
+async function deleteQuote(id) {
+    const quote = await Quote.findOne({ _id: id })
+
+    if (!quote) return 'Invalid Id';
+
+    await Quote.deleteOne({ _id: id })
+
+    return 'Quote deleted'
 }
 
 function connectDb () {
@@ -174,5 +225,10 @@ module.exports = {
     connectDb,
     findAdminEmail,
     adminLogin,
-    addAdmin
+    addAdmin,
+    getAllQuotes,
+    getQuote,
+    editQuoteStat,
+    addQuote,
+    deleteQuote
 }
