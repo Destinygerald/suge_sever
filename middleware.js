@@ -15,7 +15,6 @@ async function authAdmin (req, res, next) {
 	try {
 		const authToken = req.headers.authorization.split(' ')
 
-
         if (!authToken) {
             return res.status(401).json({
                 status: 'Failed',
@@ -25,13 +24,13 @@ async function authAdmin (req, res, next) {
 
 		let token ;
 		
-		if (authToken[1].at(authToken[1].length) == ';') {
+		if (authToken[1].at(authToken[1].length - 1) == ';') {
 			token = authToken[1].slice(0, authToken[1].length - 1)
 		} else {
 			token = authToken[1]
 		}
 
-        const verify = jwtVerify(token)
+		const verify = jwtVerify(token)
 
         if (!verify) {
             return res.status(401).json({

@@ -47,6 +47,7 @@ async function createBlog(data) {
     }
 
     const newBlog = await Blog.create({
+        meta_data_title: data?.meta_data_title,
         title: data?.title,
         dateAdded: Date.now(),
         readTime: data?.readTime,

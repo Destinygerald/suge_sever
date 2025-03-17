@@ -106,7 +106,7 @@ async function profile(req, res) {
 
         let token ;
 		
-		if (authToken[1].at(authToken[1].length) == ';') {
+		if (authToken[1].at(authToken[1].length - 1) == ';') {
 			token = authToken[1].slice(0, authToken[1].length - 1)
 		} else {
 			token = authToken[1]
@@ -148,6 +148,7 @@ async function addBlog(req, res) {
     try {
         const { title, content, readTime, template, meta_data_title } = req.body;
 
+
         if (!title || !readTime || !content[0]) {
             return res.status(400).json({
                 status: 'Failed',
@@ -162,7 +163,6 @@ async function addBlog(req, res) {
     
 
         await createBlog(data)
-
 
         return res.status(201).json({
             status: 'Created',
