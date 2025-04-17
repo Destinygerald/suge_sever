@@ -1,5 +1,5 @@
 const Mongoose = require('mongoose')
-const { Blog, Admin, Content, Quote } = require('./models.js')
+const { Blog, Admin, Content, Quote, Popup } = require('./models.js')
 const { hashPassword, comparePassword } = require('../helper_functions.js')
 require('dotenv').config()
 
@@ -28,9 +28,11 @@ async function adminLogin(email, password) {
     return admin
 }
 
-async function createBlogContent (header, content, img, list) {
+// async function createBlogContent (header, content, img, list) {
+async function createBlogContent (header, content, img) {
     const blogContent = await Content.create({
-        header, content, img, list
+        // header, content, img, list
+        header, content, img
     })
 
     return blogContent?._id
@@ -41,7 +43,8 @@ async function createBlog(data) {
     const blogContentsId = []
 
     for(item of data?.content) {
-       let newBlogId = await createBlogContent(item?.header, item?.content, item?.img, item?.list )
+    //    let newBlogId = await createBlogContent(item?.header, item?.content, item?.img, item?.list )
+       let newBlogId = await createBlogContent(item?.header, item?.content, item?.img)
        blogContentsId.push(newBlogId)
     //    console.log(newBlogId)
     }
@@ -91,7 +94,7 @@ async function getBlogs() {
 
 
 
-    const filteredBlogs = await allBlogs.map((item, i) => {
+    const filteredBlogs = allBlogs.map((item, i) => {
         return ({
             _id: item?._id,
             meta_data_title: item?.meta_data_title,
@@ -205,6 +208,89 @@ async function deleteQuote(id) {
     return 'Quote deleted'
 }
 
+
+async function fetchActivePopup () {
+    const popup = await Popup.findOne({ activated: true })
+
+    if (!popup) return;
+
+    return popup;
+}
+
+async function fetchAllPopups () {
+    const popups = Popup.find({})
+
+    return popups
+}
+
+async function createPopup (data) {
+    const popup = await Popup.create({
+        title: data?.title,
+        content: data?.content,
+        dateAdded: Date.now(),
+        navigation: data?.navigation
+    })
+
+    if (!popup) return;
+
+    return true;
+}
+
+async function editPopup (id, data) {
+    const popup = await Popup.findOne({ _id: id })
+
+    if (!popup) return 'Invalid Id'; 
+
+    popup.title = data?.title
+    popup.content = data?.content
+    popup.navigation = data?.navigation
+
+    await popup.save()
+    
+    return popup;
+}
+
+async function activatePopup (id) {
+    const popup = await Popup.findOne({ _id: id })
+
+    if (!popup) return 'Invalid Id'; 
+
+    const allPopup = await Popup.find({})
+    
+    for(const _popup of allPopup) {
+        popup.activated = false
+    }
+
+    await allPopup.save()
+
+    popup.activated = true
+    await popup.save()
+
+    return popup;
+}
+
+async function deactivatePopup(id) {
+    const popup = await Popup.findOne({ _id: id })
+
+    if (!popup) return 'Invalid Id'; 
+
+    popup.activated = false
+    await popup.save()
+
+    return popup;
+}
+
+async function deletePopup (id) {
+    const popup = await Popup.findOne({ _id: id })
+
+    if (!popup) return 'Invalid Id';
+
+    await Popup.deleteOne({ _id: id })
+
+    return popup;
+}
+
+
 function connectDb () {
 
     Mongoose
@@ -231,5 +317,12 @@ module.exports = {
     getQuote,
     editQuoteStat,
     addQuote,
-    deleteQuote
+    deleteQuote,
+    fetchActivePopup,
+    createPopup,
+    editPopup,
+    activatePopup,
+    deactivatePopup,
+    deletePopup,
+    fetchAllPopups
 }

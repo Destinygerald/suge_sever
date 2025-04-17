@@ -11,7 +11,7 @@ const contentListSchema = new Schema({
 const contentSchema = new Schema({
     header: String,
     content: String,
-    list: [contentListSchema],
+    // list: [contentListSchema],
     img: String,
 })
 
@@ -54,6 +54,7 @@ const AdminSchema = new Schema({
 
 const Admin = model('admin', AdminSchema)
 
+// QUOTE SCHEMA
 const QuoteSchema = new Schema({
     businessType: String,
     wasteType: String,
@@ -71,10 +72,24 @@ const QuoteSchema = new Schema({
 
 const Quote = model('quote', QuoteSchema)
 
+// POPUP SCHEMA
+const PopupSchema = new Schema({
+    title: String,
+    content: String,
+    navigation: String,
+    activated: {
+        type: Boolean,
+        default: false
+    },
+    dateAdded: Date
+})
+
+const Popup = model('popup', PopupSchema)
 
 module.exports = {
     Blog,
     Admin,
     Content,
-    Quote
+    Quote,
+    Popup
 }
